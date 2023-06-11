@@ -12,7 +12,6 @@ date = f"{datetime.now().strftime(dt_string)}"
 #------------[download files]------------#
 def download_files(download_list, download_start_dir, origin_url):
     print("\nstarting download files...")
-    print(date)
     for download_link in download_list:
         response = requests.get(f"{origin_url}{download_link}")
         if response.status_code == 200:
@@ -29,10 +28,9 @@ def download_files(download_list, download_start_dir, origin_url):
 
 #------------[grep file info from link]------------#
 def grep_file_info(download_link):
-    parsed_url = urlparse(download_link)
-    path = parsed_url.path
-    file_extension = path.split('.')[-1]
-    file_name = path.split('/')[-1]
+
+    file_extension = download_link.split('.')[-1]
+    file_name = download_link.split('/')[-1]
     return file_extension, file_name
 
 
